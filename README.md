@@ -238,3 +238,14 @@ if err != nil {
     // error
 }
 ```
+
+### 上传文件
+```go
+notify := wework_notify.NewWeworkClient("YOUR_TOKEN")
+// 给定文件类型( FILE | VOICE)及文件路径进行上传，返回带有media_id的结构体
+mediaInfo, err := notify.UploadFile(FILE, filePath)
+if err != nil {
+	log.Errorln(mediaInfo.ErrCode,mediaInfo.ErrMsg)
+}
+log.Info(mediaInfo.MediaId)
+```
