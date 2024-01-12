@@ -17,12 +17,224 @@
 ### 环境要求
 - go 1.18+
 
-### 引入包
+### 安装
 ```shell
 go get -u github.com/xinyunaha/wework-notify-go-sdk
+```
+### 引入包
+```go
+import (
+    "github.com/xinyunaha/wework-notify-go-sdk"
+)
 ```
 
 ### 发送文本消息
 ```go
+notify := wework_notify.NewWeworkClient("YOUR_TOKEN")
+err := notify.SendTextMessage("Test Message", []string{wework_notify.AtAll}, nil)
+if err != nil {
+    // error
+}
+```
 
+### 发送markdown消息
+```go
+notify := wework_notify.NewWeworkClient("YOUR_TOKEN")
+err := notify.SendMarkdownMessage("这是一条Markdown测试消息\n<font color=\"comment\">测试</font>")
+if err != nil {
+    // error
+}
+```
+
+### 发送图片消息
+```go
+    notify := wework_notify.NewWeworkClient("YOUR_TOKEN")
+    err := notify.SendImageMessage("IMAGE_BASE64", "IMAGE_MD5")
+    if err != nil {
+        // error
+    }
+```
+
+###  发送图文消息
+```go
+notify := wework_notify.NewWeworkClient("YOUR_TOKEN")
+notify.SendNewsMessage([]Articles{
+    {
+        Title:       "图文消息测试",
+        Description: "这是一条测试消息",
+        URL:         "https://www.baidu.com",
+        PicUrl:      "https://img2.baidu.com/it/u=3992244728,3167300513&fm=253&fmt=auto&app=138&f=PNG?w=1068&h=455",
+    }, {
+        Title:       "图文消息测试",
+        Description: "这是一条测试消息",
+        URL:         "https://www.baidu.com",
+        PicUrl:      "https://img2.baidu.com/it/u=3992244728,3167300513&fm=253&fmt=auto&app=138&f=PNG?w=1068&h=455",
+    }, {
+        Title:       "图文消息测试",
+        Description: "这是一条测试消息",
+        URL:         "https://www.baidu.com",
+        PicUrl:      "https://img2.baidu.com/it/u=3992244728,3167300513&fm=253&fmt=auto&app=138&f=PNG?w=1068&h=455",
+    },
+}
+```
+
+### 发送语音消息
+> 语音消息仅能上传amr格式文件
+- 已知media_id
+```go
+notify := wework_notify.NewWeworkClient("YOUR_TOKEN")
+// 给定media_id发送语音，media_id可通过上传文件获取
+mediaID, err := notify.SendVoiceMessage("MEDIA_ID", "")
+if err != nil {
+    // error
+}
+```
+- 未知media_id，上传文件并发送
+```go
+notify := wework_notify.NewWeworkClient("YOUR_TOKEN")
+// media_id不填，给定path将自动上传并返回media_id
+mediaID, err := notify.SendVoiceMessage("", "VOICE_PATH")
+if err != nil {
+    // error
+}
+```
+
+### 发送文件
+- 已知media_id
+```go
+notify := wework_notify.NewWeworkClient("YOUR_TOKEN")
+// 给定media_id发送文件，media_id可通过上传文件获取
+mediaID, err := notify.SendFileMessage("MEDIA_ID", "")
+if err != nil {
+    // error
+}
+```
+- 未知media_id，上传文件并发送
+```go
+notify := wework_notify.NewWeworkClient("YOUR_TOKEN")
+// media_id不填，给定path将自动上传并返回media_id
+mediaID, err := notify.SendFileMessage("", "FILE_PATH")
+if err != nil {
+    // error
+}
+```
+
+### 文字卡片模板消息
+```go
+notify := wework_notify.NewWeworkClient("YOUR_TOKEN")
+err := notify.SendTextTemplateMessage(
+    Source{
+        IconUrl:   "https://wework.qpic.cn/wwpic/252813_jOfDHtcISzuodLa_1629280209/0",
+        Desc:      "企业微信通知",
+        DescColor: 0,
+    },
+    MainTitle{
+        Title: "欢迎使用企业微信",
+        Desc:  "这是一条测试消息",
+    },
+    Emphasis{
+        Title: "99.98%",
+        Desc:  "24h可用率",
+    },
+    Quote{
+        Type:      1,
+        Url:       "https://work.weixin.qq.com/?from=openApi",
+        Appid:     "APPID",
+        PagePath:  "PAGEPATH",
+        Title:     "引用标题测试",
+        QuoteText: "引用文本测试\nbot引用文本测试",
+    },
+    "子标题测试",
+    []HorizontalContent{
+        {
+            KeyName: "测试人",
+            Value:   "bot",
+        },
+        {
+            KeyName: "企微官网",
+            Value:   "点击访问",
+            Type:    1,
+            Url:     "https://work.weixin.qq.com/?from=openApi",
+        },
+    },
+    []Jump{
+        {
+            Type:  1,
+            Url:   "https://work.weixin.qq.com/?from=openApi",
+            Title: "企业微信官网",
+        },
+    },
+    CardAction{
+        Type:     1,
+        Url:      "https://work.weixin.qq.com/?from=openApi",
+        Appid:    "APPID",
+        PagePath: "PAGEPATH",
+    },
+)
+if err != nil {
+    // error
+}
+```
+
+### 图片卡片模板消息
+```go
+notify := wework_notify.NewWeworkClient("YOUR_TOKEN")
+err := notify.SendPictureTemplateMessage(
+    Source{
+        IconUrl:   "https://wework.qpic.cn/wwpic/252813_jOfDHtcISzuodLa_1629280209/0",
+        Desc:      "企业微信通知",
+        DescColor: 0,
+    },
+    MainTitle{
+        Title: "欢迎使用企业微信",
+        Desc:  "这是一条测试消息",
+    },
+    ImgText{
+        Type:     1,
+        Url:      "https://work.weixin.qq.com",
+        Title:    "欢迎使用企业微信",
+        Desc:     "这是一条测试消息",
+        ImageUrl: "https://img2.baidu.com/it/u=3992244728,3167300513&fm=253&fmt=auto&app=138&f=PNG?w=1068&h=455",
+    },
+    Quote{
+        Type:      1,
+        Url:       "https://work.weixin.qq.com/?from=openApi",
+        Title:     "引用标题测试",
+        QuoteText: "引用文本测试\nbot引用文本测试",
+    },
+    []VerticalContent{
+        {
+            Title: "垂直区域二级标题",
+            Desc:  "测试消息",
+        },
+    },
+    []HorizontalContent{
+        {
+            KeyName: "测试人",
+            Value:   "bot",
+        },
+        {
+            KeyName: "企微官网",
+            Value:   "点击访问",
+            Type:    1,
+            Url:     "https://work.weixin.qq.com/?from=openApi",
+        },
+    },
+    []Jump{
+        {
+            Type:  1,
+            Url:   "https://work.weixin.qq.com/?from=openApi",
+            Title: "企业微信官网",
+        },
+    },
+    CardAction{
+        Type:     1,
+        Url:      "https://work.weixin.qq.com/?from=openApi",
+        Appid:    "APPID",
+        PagePath: "PAGEPATH",
+    },
+)
+if err != nil {
+    // error
+}
 ```
