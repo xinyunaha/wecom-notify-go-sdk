@@ -1,4 +1,4 @@
-# wework-notify
+# wework-notify-go-sdk
 > Golang 企业微信群bot推送通知 SDK
 
 ## 支持的功能
