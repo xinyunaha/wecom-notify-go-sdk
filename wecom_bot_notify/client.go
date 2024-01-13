@@ -6,7 +6,7 @@
  * @Description:
  */
 
-package wecomBotNotify
+package wecom_bot_notify
 
 import (
 	"bytes"

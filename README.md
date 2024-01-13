@@ -1,16 +1,22 @@
 # wecom-notify-go-sdk
-> Golang 企业微信群bot推送通知 SDK
+> Golang 企业微信消息推送通知 SDK 
 
 ## 支持的功能
-- [x] [文本](https://developer.work.weixin.qq.com/document/path/91770#%E6%96%87%E6%9C%AC%E7%B1%BB%E5%9E%8B)
-- [x] [markdown](https://developer.work.weixin.qq.com/document/path/91770#markdown%E7%B1%BB%E5%9E%8B)
-- [x] [图片](https://developer.work.weixin.qq.com/document/path/91770#%E5%9B%BE%E7%89%87%E7%B1%BB%E5%9E%8B)
-- [x] [图文](https://developer.work.weixin.qq.com/document/path/91770#%E5%9B%BE%E7%89%87%E7%B1%BB%E5%9E%8B)
-- [x] [文件](https://developer.work.weixin.qq.com/document/path/91770#%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B)
-- [x] [语音](https://developer.work.weixin.qq.com/document/path/91770#%E8%AF%AD%E9%9F%B3%E7%B1%BB%E5%9E%8B)
-- [x] [文本通知模板卡片](https://developer.work.weixin.qq.com/document/path/91770#%E6%96%87%E6%9C%AC%E9%80%9A%E7%9F%A5%E6%A8%A1%E7%89%88%E5%8D%A1%E7%89%87)
-- [x] [图片通知模板卡片](https://developer.work.weixin.qq.com/document/path/91770#%E5%9B%BE%E6%96%87%E5%B1%95%E7%A4%BA%E6%A8%A1%E7%89%88%E5%8D%A1%E7%89%87)
-- [x] [文件上传](https://developer.work.weixin.qq.com/document/path/91770#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%8E%A5%E5%8F%A3)
+* 企业微信群Bot消息通知
+  - [x] [文本消息](https://developer.work.weixin.qq.com/document/path/91770#%E6%96%87%E6%9C%AC%E7%B1%BB%E5%9E%8B)
+  - [x] [markdown消息](https://developer.work.weixin.qq.com/document/path/91770#markdown%E7%B1%BB%E5%9E%8B)
+  - [x] [图片消息](https://developer.work.weixin.qq.com/document/path/91770#%E5%9B%BE%E7%89%87%E7%B1%BB%E5%9E%8B)
+  - [x] [图文消息](https://developer.work.weixin.qq.com/document/path/91770#%E5%9B%BE%E7%89%87%E7%B1%BB%E5%9E%8B)
+  - [x] [文件消息](https://developer.work.weixin.qq.com/document/path/91770#%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B)
+  - [x] [语音消息](https://developer.work.weixin.qq.com/document/path/91770#%E8%AF%AD%E9%9F%B3%E7%B1%BB%E5%9E%8B)
+  - [x] [文本通知模板卡片消息](https://developer.work.weixin.qq.com/document/path/91770#%E6%96%87%E6%9C%AC%E9%80%9A%E7%9F%A5%E6%A8%A1%E7%89%88%E5%8D%A1%E7%89%87)
+  - [x] [图片通知模板卡片消息](https://developer.work.weixin.qq.com/document/path/91770#%E5%9B%BE%E6%96%87%E5%B1%95%E7%A4%BA%E6%A8%A1%E7%89%88%E5%8D%A1%E7%89%87)
+  - [x] [文件上传](https://developer.work.weixin.qq.com/document/path/91770#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%8E%A5%E5%8F%A3)
+* 企业微信应用消息(逐步适配中)
+  - [ ] [发送应用消息]()
+  - [ ] [发送应用模板消息]()
+  - [ ] [接收消息与事件]()
+  - [ ] [撤回应用消息]()
 
 ## 安装使用
 
@@ -28,10 +34,13 @@ import (
 )
 ```
 
+<details>
+<summary><b>企业微信群聊机器人</b></summary>
+
 ### 发送文本消息
 ```go
-notify := wecomBotNotify.NewWecomBotClient("YOUR_TOKEN")
-err := notify.SendTextMessage("Test Message", []string{wecomBotNotify.AtAll}, nil)
+notify := wecom_bot_notify.NewWecomBotClient("YOUR_TOKEN")
+err := notify.SendTextMessage("Test Message", []string{wecom_bot_notify.AtAll}, nil)
 if err != nil {
     // error
 }
@@ -39,7 +48,7 @@ if err != nil {
 
 ### 发送markdown消息
 ```go
-notify := wecomBotNotify.NewWecomClient("YOUR_TOKEN")
+notify := wecom_bot_notify.NewWecomClient("YOUR_TOKEN")
 err := notify.SendMarkdownMessage("这是一条Markdown测试消息\n<font color=\"comment\">测试</font>")
 if err != nil {
     // error
@@ -48,7 +57,7 @@ if err != nil {
 
 ### 发送图片消息
 ```go
-    notify := wecomBotNotify.NewWecomClient("YOUR_TOKEN")
+    notify := wecom_bot_notify.NewWecomClient("YOUR_TOKEN")
     err := notify.SendImageMessage("IMAGE_BASE64", "IMAGE_MD5")
     if err != nil {
         // error
@@ -57,7 +66,7 @@ if err != nil {
 
 ###  发送图文消息
 ```go
-notify := wecomBotNotify.NewWecomClient("YOUR_TOKEN")
+notify := wecom_bot_notify.NewWecomClient("YOUR_TOKEN")
 notify.SendNewsMessage([]Articles{
     {
         Title:       "图文消息测试",
@@ -82,7 +91,7 @@ notify.SendNewsMessage([]Articles{
 > 语音消息仅能上传amr格式文件
 - 已知media_id
 ```go
-notify := wecomBotNotify.NewWecomClient("YOUR_TOKEN")
+notify := wecom_bot_notify.NewWecomClient("YOUR_TOKEN")
 // 给定media_id发送语音，media_id可通过上传文件获取
 mediaID, err := notify.SendVoiceMessage("MEDIA_ID", "")
 if err != nil {
@@ -91,7 +100,7 @@ if err != nil {
 ```
 - 未知media_id，上传文件并发送
 ```go
-notify := wecomBotNotify.NewWecomClient("YOUR_TOKEN")
+notify := wecom_bot_notify.NewWecomClient("YOUR_TOKEN")
 // media_id不填，给定path将自动上传并返回media_id
 mediaID, err := notify.SendVoiceMessage("", "VOICE_PATH")
 if err != nil {
@@ -102,7 +111,7 @@ if err != nil {
 ### 发送文件
 - 已知media_id
 ```go
-notify := wecomBotNotify.NewWecomClient("YOUR_TOKEN")
+notify := wecom_bot_notify.NewWecomClient("YOUR_TOKEN")
 // 给定media_id发送文件，media_id可通过上传文件获取
 mediaID, err := notify.SendFileMessage("MEDIA_ID", "")
 if err != nil {
@@ -111,7 +120,7 @@ if err != nil {
 ```
 - 未知media_id，上传文件并发送
 ```go
-notify := wecomBotNotify.NewWecomClient("YOUR_TOKEN")
+notify := wecom_bot_notify.NewWecomClient("YOUR_TOKEN")
 // media_id不填，给定path将自动上传并返回media_id
 mediaID, err := notify.SendFileMessage("", "FILE_PATH")
 if err != nil {
@@ -121,7 +130,7 @@ if err != nil {
 
 ### 文字卡片模板消息
 ```go
-notify := wecomBotNotify.NewWecomClient("YOUR_TOKEN")
+notify := wecom_bot_notify.NewWecomClient("YOUR_TOKEN")
 err := notify.SendTextTemplateMessage(
     Source{
         IconUrl:   "https://wecom.qpic.cn/wwpic/252813_jOfDHtcISzuodLa_1629280209/0",
@@ -178,7 +187,7 @@ if err != nil {
 
 ### 图片卡片模板消息
 ```go
-notify := wecomBotNotify.NewWecomClient("YOUR_TOKEN")
+notify := wecom_bot_notify.NewWecomClient("YOUR_TOKEN")
 err := notify.SendPictureTemplateMessage(
     Source{
         IconUrl:   "https://wecom.qpic.cn/wwpic/252813_jOfDHtcISzuodLa_1629280209/0",
@@ -241,7 +250,7 @@ if err != nil {
 
 ### 上传文件
 ```go
-notify := wecomBotNotify.NewWecomClient("YOUR_TOKEN")
+notify := wecom_bot_notify.NewWecomClient("YOUR_TOKEN")
 // 给定文件类型( FILE | VOICE)及文件路径进行上传，返回带有media_id的结构体
 mediaInfo, err := notify.UploadFile(FILE, filePath)
 if err != nil {
@@ -249,3 +258,9 @@ if err != nil {
 }
 log.Info(mediaInfo.MediaId)
 ```
+</details>
+
+<details>
+<summary><b>企业微信应用消息</b></summary>
+> 适配中
+</details>

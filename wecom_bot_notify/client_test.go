@@ -6,7 +6,7 @@
  * @Description:
  */
 
-package wecomBotNotify
+package wecom_bot_notify
 
 import (
 	"github.com/go-playground/assert/v2"
@@ -14,8 +14,8 @@ import (
 )
 
 var (
-	filePath  = "F:\\project\\wework-notify\\test\\test.txt"
-	voicePath = "F:\\project\\wework-notify\\test\\test.amr"
+	filePath  = "F:\\project\\wework-notify\\test_files\\test_files.txt"
+	voicePath = "F:\\project\\wework-notify\\test_files\\test_files.amr"
 	notify    = NewWecomBotClient("YOUR_WEWORK_BOT_KEY")
 )
 
