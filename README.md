@@ -30,8 +30,8 @@ import (
 
 ### 发送文本消息
 ```go
-notify := wecom_notify.NewWecomBotClient("YOUR_TOKEN")
-err := notify.SendTextMessage("Test Message", []string{wecom_notify.AtAll}, nil)
+notify := wecomBotNotify.NewWecomBotClient("YOUR_TOKEN")
+err := notify.SendTextMessage("Test Message", []string{wecomBotNotify.AtAll}, nil)
 if err != nil {
     // error
 }
@@ -39,7 +39,7 @@ if err != nil {
 
 ### 发送markdown消息
 ```go
-notify := wecom_notify.NewWecomClient("YOUR_TOKEN")
+notify := wecomBotNotify.NewWecomClient("YOUR_TOKEN")
 err := notify.SendMarkdownMessage("这是一条Markdown测试消息\n<font color=\"comment\">测试</font>")
 if err != nil {
     // error
@@ -48,7 +48,7 @@ if err != nil {
 
 ### 发送图片消息
 ```go
-    notify := wecom_notify.NewWecomClient("YOUR_TOKEN")
+    notify := wecomBotNotify.NewWecomClient("YOUR_TOKEN")
     err := notify.SendImageMessage("IMAGE_BASE64", "IMAGE_MD5")
     if err != nil {
         // error
@@ -57,7 +57,7 @@ if err != nil {
 
 ###  发送图文消息
 ```go
-notify := wecom_notify.NewWecomClient("YOUR_TOKEN")
+notify := wecomBotNotify.NewWecomClient("YOUR_TOKEN")
 notify.SendNewsMessage([]Articles{
     {
         Title:       "图文消息测试",
@@ -82,7 +82,7 @@ notify.SendNewsMessage([]Articles{
 > 语音消息仅能上传amr格式文件
 - 已知media_id
 ```go
-notify := wecom_notify.NewWecomClient("YOUR_TOKEN")
+notify := wecomBotNotify.NewWecomClient("YOUR_TOKEN")
 // 给定media_id发送语音，media_id可通过上传文件获取
 mediaID, err := notify.SendVoiceMessage("MEDIA_ID", "")
 if err != nil {
@@ -91,7 +91,7 @@ if err != nil {
 ```
 - 未知media_id，上传文件并发送
 ```go
-notify := wecom_notify.NewWecomClient("YOUR_TOKEN")
+notify := wecomBotNotify.NewWecomClient("YOUR_TOKEN")
 // media_id不填，给定path将自动上传并返回media_id
 mediaID, err := notify.SendVoiceMessage("", "VOICE_PATH")
 if err != nil {
@@ -102,7 +102,7 @@ if err != nil {
 ### 发送文件
 - 已知media_id
 ```go
-notify := wecom_notify.NewWecomClient("YOUR_TOKEN")
+notify := wecomBotNotify.NewWecomClient("YOUR_TOKEN")
 // 给定media_id发送文件，media_id可通过上传文件获取
 mediaID, err := notify.SendFileMessage("MEDIA_ID", "")
 if err != nil {
@@ -111,7 +111,7 @@ if err != nil {
 ```
 - 未知media_id，上传文件并发送
 ```go
-notify := wecom_notify.NewWecomClient("YOUR_TOKEN")
+notify := wecomBotNotify.NewWecomClient("YOUR_TOKEN")
 // media_id不填，给定path将自动上传并返回media_id
 mediaID, err := notify.SendFileMessage("", "FILE_PATH")
 if err != nil {
@@ -121,7 +121,7 @@ if err != nil {
 
 ### 文字卡片模板消息
 ```go
-notify := wecom_notify.NewWecomClient("YOUR_TOKEN")
+notify := wecomBotNotify.NewWecomClient("YOUR_TOKEN")
 err := notify.SendTextTemplateMessage(
     Source{
         IconUrl:   "https://wecom.qpic.cn/wwpic/252813_jOfDHtcISzuodLa_1629280209/0",
@@ -178,7 +178,7 @@ if err != nil {
 
 ### 图片卡片模板消息
 ```go
-notify := wecom_notify.NewWecomClient("YOUR_TOKEN")
+notify := wecomBotNotify.NewWecomClient("YOUR_TOKEN")
 err := notify.SendPictureTemplateMessage(
     Source{
         IconUrl:   "https://wecom.qpic.cn/wwpic/252813_jOfDHtcISzuodLa_1629280209/0",
@@ -241,7 +241,7 @@ if err != nil {
 
 ### 上传文件
 ```go
-notify := wecom_notify.NewWecomClient("YOUR_TOKEN")
+notify := wecomBotNotify.NewWecomClient("YOUR_TOKEN")
 // 给定文件类型( FILE | VOICE)及文件路径进行上传，返回带有media_id的结构体
 mediaInfo, err := notify.UploadFile(FILE, filePath)
 if err != nil {
