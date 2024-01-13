@@ -6,7 +6,7 @@
  * @Description:
  */
 
-package wework_notify
+package wecomBotNotify
 
 const (
 	TEXT     = "text"

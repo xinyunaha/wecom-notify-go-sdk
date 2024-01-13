@@ -6,7 +6,7 @@
  * @Description:
  */
 
-package wework_notify
+package wecomBotNotify
 
 func NewTextMessage(content string, mentionedList []string, mentionedMobileList []string) *TextMessage {
 	return &TextMessage{

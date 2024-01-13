@@ -6,7 +6,7 @@
  * @Description: 用户文件相关组件
  */
 
-package wework_notify
+package utils
 
 import "os"
 

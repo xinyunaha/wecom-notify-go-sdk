@@ -6,14 +6,14 @@
  * @Description:
  */
 
-package wework_notify
+package wecomBotNotify
 
 import (
 	"bytes"
 	"encoding/json"
 	"errors"
 	"fmt"
-	weworknotify "github.com/xinyunaha/wework-notify-go-sdk/utils"
+	"github.com/xinyunaha/wecom-notify-go-sdk/utils"
 	"io"
 	"mime/multipart"
 	"net/http"
@@ -72,7 +72,7 @@ func (client *Client) Send(msg any) error {
 
 // UploadFile 上传文件 获取media_id
 func (client *Client) UploadFile(fileType, filePath string) (FileUploadResponse, error) {
-	if !weworknotify.Exists(filePath) {
+	if !utils.Exists(filePath) {
 		return FileUploadResponse{}, errors.New("file not exists")
 	}
 	var mediaInfo FileUploadResponse
@@ -154,7 +154,7 @@ func (client *Client) SendNewsMessage(articles []Articles) error {
 // SendFileMessage 发送文件消息 如果mediaId为空，通过给定filePath进行上传并返回mediaId
 func (client *Client) SendFileMessage(mediaId string, filePath string) (string, error) {
 	if mediaId == "" {
-		if !weworknotify.Exists(filePath) {
+		if !utils.Exists(filePath) {
 			return "", errors.New("file not exists")
 		}
 		mediaInfo, err := client.UploadFile(FILE, filePath)
@@ -170,7 +170,7 @@ func (client *Client) SendFileMessage(mediaId string, filePath string) (string, 
 // SendVoiceMessage 发送语音消息 如果mediaId为空，通过给定filePath进行上传并返回mediaId
 func (client *Client) SendVoiceMessage(mediaId, filePath string) (string, error) {
 	if mediaId == "" {
-		if !weworknotify.Exists(filePath) {
+		if !utils.Exists(filePath) {
 			return "", errors.New("file not exists")
 		}
 		mediaInfo, err := client.UploadFile(VOICE, filePath)
