@@ -26,7 +26,7 @@ type Client struct {
 	token string
 }
 
-func NewWeworkClient(token string) *Client {
+func NewWecomBotClient(token string) *Client {
 	return &Client{token: token}
 }
 

@@ -30,7 +30,7 @@ import (
 
 ### 发送文本消息
 ```go
-notify := wework_notify.NewWeworkClient("YOUR_TOKEN")
+notify := wework_notify.NewWecomBotClient("YOUR_TOKEN")
 err := notify.SendTextMessage("Test Message", []string{wework_notify.AtAll}, nil)
 if err != nil {
     // error

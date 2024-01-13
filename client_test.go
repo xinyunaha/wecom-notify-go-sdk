@@ -16,7 +16,7 @@ import (
 var (
 	filePath  = "F:\\project\\wework-notify\\test\\test.txt"
 	voicePath = "F:\\project\\wework-notify\\test\\test.amr"
-	notify    = NewWeworkClient("YOUR_WEWORK_BOT_KEY")
+	notify    = NewWecomBotClient("YOUR_WEWORK_BOT_KEY")
 )
 
 func TestClient_SendTextMessage(t *testing.T) {
